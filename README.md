@@ -60,3 +60,6 @@ if the command does not return a result, please install python:
    | Windows                             | Linux                                |
    | ----------------------------------- | ------------------------------------ |
    | **pip install -r requirements.txt** | **pip3 install -r requirements.txt** |
+
+7. Run tests 
+**python -m unittest -v <suite>/<tests>**

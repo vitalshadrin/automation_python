@@ -1,13 +1,18 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
+
+import unittest
+from utils.web_driver import CreateWebDriver
 
 
-class BaseTest():
+class BaseTest(unittest.TestCase):
     driver = None
-    
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.driver = CreateWebDriver.createWebDriver(CreateWebDriver.drivers.chrome)
+
     def get(self, clazz):
-        if self.driver is None : 
-            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
         return clazz(self.driver)
-    
+
+    @classmethod
+    def tearDownClass(cls) -> None:
+        cls.driver.close()
